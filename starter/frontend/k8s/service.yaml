@@ -4,6 +4,8 @@ metadata:
   name: frontend
   labels:
     app: frontend
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-0a7ab17ead967506e,subnet-0d260e3bc576daecc,subnet-05e2d3f9588da9a51,subnet-0d12c81a7575d1158,subnet-0be6e797455abfb8
 spec:
   type: LoadBalancer
   selector:
