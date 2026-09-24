@@ -3,7 +3,7 @@ name: Frontend Continuous Integration
 on:
   pull_request:
     branches:
-      - main
+      - master
     paths:
       - 'starter/frontend/**'
   workflow_dispatch:
@@ -71,6 +71,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Set up Node.js and restore npm cache
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: 'starter/frontend/.nvmrc'
+          cache: 'npm'
+          cache-dependency-path: starter/frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: starter/frontend
+        run: npm ci
 
       - name: Build Docker image
         run: |
